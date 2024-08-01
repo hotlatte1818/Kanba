@@ -1,0 +1,107 @@
+<div>
+
+  <h4> Clear the database:
+    <button class="button" mat-raised-button (click)="onClickDeleteDb()">Delete All</button>
+  </h4>
+
+
+  <h3>Please Enter the Team information</h3>
+  <div class="customGroup">
+    <div class="inputFieldGroup">
+      <textarea class="textField" matInput type="text" (input)="changeInfoField($event)"
+        placeholder="TeamName RegistrationDate GroupNumber" multiline></textarea>
+      <button class="button" mat-raised-button (click)="onClickInfo()">Enter</button>
+    </div>
+
+    <div class="customTable">
+      <table class="table">
+        <caption>Team Information</caption>
+        <thead>
+          <tr>
+            <th scope="col">Team Name</th>
+            <th scope="col">Registration Date</th>
+            <th scope="col">Group Number</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let team of teamInfoArr">
+          <tr>
+            <td>{{ team.name }}</td>
+            <td>{{ team.regDate }}</td>
+            <td>{{ team.groupNumber }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <h3>Please Enter the Match score</h3>
+  <div class="customGroup">
+    <div class="inputFieldGroup">
+      <textarea class="textField" matInput type="text" (input)="changeResultField($event)"
+        placeholder="TeamNameA TeamNameB TeamAScore TeamBScore" multiline></textarea>
+      <button class="button" mat-raised-button (click)="onClickResult()">Enter</button>
+    </div>
+
+    <div class="customTable">
+      <table class="table">
+        <caption>Match Result</caption>
+        <thead>
+          <tr>
+            <th scope="col">Team A</th>
+            <th scope="col">Score</th>
+            <th scope="col">Team B</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let result of matchResultArr">
+          <tr>
+            <td>{{ result.teamA }}</td>
+            <td>{{ result.scoreA }}</td>
+            <td>{{ result.teamB }}</td>
+            <td>{{ result.scoreB }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+  <div>
+    <h2>Ranking</h2>
+    <div *ngFor="let group of rankingArr">
+      <table class="table">
+        <caption>Team Ranking: Group {{group.name}}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Team Name</th>
+            <th scope="col">Score</th>
+            <th scope="col">Total Goals</th>
+            <th scope="col">Alternate Match Point</th>
+            <th scope="col">Registration Date</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let team of group.rank; let i = index">
+          <tr>
+            <td>{{ i + 1}}</td>
+            <td>{{ team[0] }}</td>
+            <td>{{ team[1][0] }}</td>
+            <td>{{ team[1][1] }}</td>
+            <td>{{ team[1][2] }}</td>
+            <td>{{ team[1][3] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>
